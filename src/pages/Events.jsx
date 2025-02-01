@@ -59,9 +59,7 @@ const Events = () => {
         slidesPerView={1}
         navigation
         pagination={{ clickable: true }}
-        loop={true}
-      
-      >
+        loop={true}>
             <SwiperSlide>
                 <img  className='lg:h-[350px] h-[200px] w-full object-cover' src="https://media.licdn.com/dms/image/v2/C511BAQHi6nmILtEHDQ/company-background_10000/company-background_10000/0/1583764960473/designup_conference_cover?e=2147483647&v=beta&t=V56rcxHXWyr43Ph6hnM29UJWshfrD8EiYoSZJ229KEI" alt="" />
             </SwiperSlide>

@@ -2,7 +2,10 @@ import axios from 'axios';
 // require('dotenv').config();
 // let ip = process.env.IP_ADDRESS;
 const API = axios.create({
-  baseURL: `http://192.168.1.6:5000/api`, // Backend API base URL
+  // https://student-connect-server.onrender.com
+  // Backend API base URL
+  // baseURL: `https://student-connect-server.onrender.com/api`, 
+  baseURL: `http://localhost:5000/api`, // Backend API base URL
   headers: {
     'Content-Type': 'application/json',
   },

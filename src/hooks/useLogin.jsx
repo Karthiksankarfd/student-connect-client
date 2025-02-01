@@ -4,9 +4,10 @@ import { useNavigate } from "react-router-dom";
 import { SignupContext } from "../context/SignupContext";
 import { UserLoggedInStateContext } from "../context/UserLoggedInContext";
 
-
 const useLogin = () => {
-  const {setIsloggedIn, setLoggedInuser } = useContext(UserLoggedInStateContext);
+  const { setIsloggedIn, setLoggedInuser,setIsLoading } = useContext(
+    UserLoggedInStateContext
+  );
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [reqpassword, setreqPassword] = useState("");
@@ -52,22 +53,25 @@ const useLogin = () => {
         console.log("Validation failed");
         return;
       }
+      setIsLoading(true)
       setloading(true);
-      console.log("Setting loader to true");
-  
+   
+
       const loginreq = await API.post(`/auth/login`, { email, reqpassword });
-  
+
       if (loginreq.status === 201) {
         setLoggedInuser(loginreq.data.user);
         setIsloggedIn(true);
         localStorage.setItem("authtoken", loginreq.data.authtoken);
+
         setloading(false);
-        console.log("Setting loader to false", loginreq.data);
+
+        // console.log("Setting loader to false", loginreq.data);
         navigate("/stntcnthome");
       }
     } catch (e) {
       setloading(false);
-  
+      setIsLoading(false)
       // Check if the error has a response object (indicating a server response)
       if (e.response && e.response.status === 401) {
         console.log("Server message:", e.response.data.msg);
@@ -77,7 +81,6 @@ const useLogin = () => {
       }
     }
   };
-  
 
   return {
     email,

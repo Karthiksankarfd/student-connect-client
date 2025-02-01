@@ -36,8 +36,8 @@ const NavbarFinal = () => {
           onClick={() => setisNavbarActive(!isNavbarActive)}
           className="block lg:hidden"
         />
-      <h1 className="font-semibold text-sm text-[#6c63ff] hidden lg:block col-span-1 w-fit">
-        studentConnect
+      <h1 className="font-semibold text-xl text-[#6c63ff] hidden lg:block col-span-1 w-fit">
+        StudentConnect
       </h1>
 
                 {isNavbarActive && (

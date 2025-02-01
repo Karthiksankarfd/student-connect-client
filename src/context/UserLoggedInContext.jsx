@@ -19,6 +19,7 @@ const UserLoggedInContextProvider = ({children}) => {
             console.log("No token Found")
             return;
         }
+        setIsLoading(true)
         try{
             let req =  await API.post("/auth/verifytoken",{token},
                 {
@@ -30,6 +31,7 @@ const UserLoggedInContextProvider = ({children}) => {
         )
                 
                 if(req.status === 201){
+                    setIsLoading(false)
                     setIsloggedIn(true)
                     setLoggedInuser(req.data.user)
                     navigate("/stntcnthome")
@@ -38,6 +40,8 @@ const UserLoggedInContextProvider = ({children}) => {
        
         }catch(e){
             console.log(e,"This is from cath block")
+        }finally{
+          setIsLoading(false)
         }
   
     }
