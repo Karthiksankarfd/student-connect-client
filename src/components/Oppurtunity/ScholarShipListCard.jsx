@@ -1,5 +1,5 @@
 import React from 'react'
-import { FaPlug, FaPlus, FaRupeeSign } from 'react-icons/fa';
+import { FaPlus, FaRupeeSign } from 'react-icons/fa';
 
 const ScholarShipListCard = ({name,sponsor,eligibility,applicationDeadline,type,amount}) => {
   return (

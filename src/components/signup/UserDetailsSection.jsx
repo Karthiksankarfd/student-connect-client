@@ -1,9 +1,4 @@
-import { Link, useNavigate } from "react-router-dom"
 
-// import PersonalInformation from "./userdatailscomponents/PersonalInformation"
-import { useEffect } from "react"
-// import useLogin from "../hooks/useLogin"
-import useSignup from "../../hooks/useSignup"
 const UserDetailsSection = () => {
     return (
       <div className="w-11/12 mx-auto p-6 rounded-lg shadow-lg bg-white">

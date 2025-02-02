@@ -1,7 +1,7 @@
-import React, { useContext, useState } from "react";
+import  { useContext, useState } from "react";
 import API from "../services/API";
 import { ModalContext } from "../context/ModalContext.jsx";
-import loggedInuser from "../MockDatas/loggedInuser.js";
+
 import { PostDataContext } from "../context/PostUploadDatacontext.jsx";
 import { UserLoggedInStateContext } from "../context/UserLoggedInContext.jsx";
 

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React from 'react';
 import './App.css';
 import { Route, Routes } from 'react-router-dom';
 import WelcomePage from './pages/WelcomePage';
@@ -13,7 +13,6 @@ import { GoogleOAuthProvider } from '@react-oauth/google';
 import Profile from './pages/Profile';
 import ModalContextProvider from './context/ModalContext';
 import PostUploadDatacontext from "./context/PostUploadDatacontext";
-import NotificationPage from './pages/NotificationPage';
 import IndexPage from './pages/IndexPage';
 import Community from './pages/Community';
 import Events from './pages/Events';
@@ -27,8 +26,7 @@ import ScholarshipPage from './pages/ScholarShipPage';
 import IndexPageOfOppurtunity from './pages/IndexPageOfOppurtunity';
 import UserLoggedInContextProvider, { UserLoggedInStateContext } from './context/UserLoggedInContext';
 import PostContextProvider from './context/PostContext';
-import MultiRoleLogin from './components/Login/MultiRoleLogin';
-import LaunchLoader from "./components/Loaders/LaunchLoader"
+
 import ProtectedComponent, { AuthContext } from './context/ProtectedComponent';
 function App() {
   // function checkNetworkConnection(){

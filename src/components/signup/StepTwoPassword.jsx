@@ -1,8 +1,4 @@
-import { Link, useNavigate } from "react-router-dom"
-// import Button from "./Button"
-// import PersonalInformation from "./userdatailscomponents/PersonalInformation"
-// import { useEffect } from "react"
-// import useLogin from "../hooks/useLogin"
+
 import useSignup from "../../hooks/useSignup"
 import { SignupContext } from "../../context/SignupContext"
 import { useContext } from "react"

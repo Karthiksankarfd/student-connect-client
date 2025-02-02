@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react'
 import EventDetail from '../components/Events/EventDetail'
-import Footer from '../components/Footer'
+
 import { EventContext } from '../context/EventDetailContext' 
 
 

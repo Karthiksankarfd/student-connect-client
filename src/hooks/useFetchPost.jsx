@@ -1,5 +1,5 @@
-import axios from 'axios'
-import React, { useContext, useState } from 'react'
+
+import  { useContext} from 'react'
 import API from '../services/API'
 import { PostContext } from '../context/PostContext'
 

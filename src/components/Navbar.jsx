@@ -1,8 +1,7 @@
-import React, { useContext } from "react";
+
 import { Link } from "react-router-dom";
-import { SignupContext } from "../context/SignupContext";
 import loggedInuser from "../MockDatas/loggedInuser"
-import { FaSearch,FaHome, FaNotification, FaBell, FaEvernote, FaMedium, FaComment, FaBook, FaUpload, FaPlus } from 'react-icons/fa';
+import { FaHome,  FaBell, FaMedium, FaComment, FaBook, FaPlus } from 'react-icons/fa';
 
 const Navbar = () => {
 

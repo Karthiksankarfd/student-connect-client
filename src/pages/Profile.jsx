@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { UserLoggedInStateContext } from '../context/UserLoggedInContext';
 import { Link } from 'react-router-dom';
-import PostCard from '../components/PostCard';
+
 import { FaEdit } from 'react-icons/fa';
 
 const Profile = () => {

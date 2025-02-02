@@ -1,6 +1,5 @@
-import React, { useContext } from 'react'
-import user from "../MockDatas/UserData"
-import { SignupContext } from '../context/SignupContext'
+import React from 'react'
+
 import loggedInuser from '../MockDatas/loggedInuser'
 
 const UserInfoCard = () => {

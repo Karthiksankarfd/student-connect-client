@@ -6,14 +6,9 @@ import { Navigation, Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-import Button from '../components/Button';
 import { Link } from 'react-router-dom';
-import EventCard from '../components/EventCard';
 import events from '../MockDatas/events';
 import ShortEventInfoCard2 from '../components/ShortEventInfoCard2';
-import Footer from '../components/Footer';
-import EventDetails from "../components/Events/EventDetail"
-import EventDetailTwo from '../components/Events/EventDetailTwo';
 import { ModalContext } from '../context/ModalContext';
 
 const Events = () => {

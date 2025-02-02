@@ -17,7 +17,7 @@ const PersonalInformation = () => {
 
           <form className='personal_data grid w-full '>
           <div className="profile_and_cover relative h-fit w-full ">
-                <img src={ signUpUser.coverPhoto? URL.createObjectURL(signUpUser.coverPhoto) : ""} alt="No cover photo" className=" backdrop-filter-blur bg-gray-400 profile_image rounded-md h-40 w-full object-cover mb-5" />
+                <img src={ signUpUser.coverPhoto? URL.createObjectURL(signUpUser.coverPhoto) : ""} alt="No_cover_photo" className=" backdrop-filter-blur bg-gray-400 profile_image rounded-md h-40 w-full object-cover mb-5" />
                 
                 <img src={ signUpUser.profilePhoto ? URL.createObjectURL(signUpUser.profilePhoto) : "https://www.pngall.com/wp-content/uploads/5/Profile-PNG-Images.png"} alt="" className="top-7 left-7 absolute profile_image rounded-full h-20 w-20 object-cover mb-5" />
         </div>

@@ -1,10 +1,10 @@
-import React, { useContext, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useContext } from "react";
+import { Link } from "react-router-dom";
 import useLogin from  "../hooks/useLogin"
 import { UserLoggedInStateContext } from "../context/UserLoggedInContext";
 const LoginPage = () => {
 
-    const{email,setEmail, setloading,login,formData,user,reqpassword, setreqPassword,passwordError,emailError,validatePassword ,validateEmail,error} =  useLogin()
+    const{email,setEmail,login,reqpassword, setreqPassword,passwordError,emailError,validatePassword ,validateEmail,error} =  useLogin()
     const{isLoading} = useContext(UserLoggedInStateContext) 
   return (
 <>

@@ -1,7 +1,6 @@
-import React, { useContext, useState } from "react";
+import  { useContext, useState } from "react";
 import API from "../services/API";
 import { useNavigate } from "react-router-dom";
-import { SignupContext } from "../context/SignupContext";
 import { UserLoggedInStateContext } from "../context/UserLoggedInContext";
 
 const useLogin = () => {
@@ -92,6 +91,7 @@ const useLogin = () => {
     login,
     formData,
     user,
+    setUser,
     error,
     reqpassword,
     setreqPassword,

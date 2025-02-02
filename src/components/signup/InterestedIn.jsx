@@ -1,7 +1,4 @@
-import { Link, useNavigate } from "react-router-dom"
-
-
-import useSignup from "../../hooks/useSignup"
+import {  useNavigate } from "react-router-dom"
 import {SignupContext} from "../../context/SignupContext"
 import { useContext } from "react"
 const InterestedIn = ()=>{

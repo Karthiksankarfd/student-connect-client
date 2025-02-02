@@ -1,10 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import Button from '../components/Button'
 import {Link, useNavigate} from  "react-router-dom"
-import axios from 'axios';
 import { GoogleLogin } from '@react-oauth/google';
-import { GoogleOAuthProvider } from '@react-oauth/google';
-import API from "../services/API"
 import { UserLoggedInStateContext } from '../context/UserLoggedInContext';
 import LaunchLoader from '../components/Loaders/LaunchLoader';
 const WelcomePage = () => {

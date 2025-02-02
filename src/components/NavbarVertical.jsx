@@ -3,15 +3,14 @@ import { Link, NavLink } from "react-router-dom";
 
 import {
   FaSearch,
-  FaHome,
-  FaNotification,
+
   FaBell,
-  FaEvernote,
-  FaMedium,
+
+ 
   FaComment,
-  FaBook,
+ 
   FaHamburger,
-  FaPlug,
+
   FaPlus,
 } from "react-icons/fa";
 import loggedInuser from "../MockDatas/loggedInuser";

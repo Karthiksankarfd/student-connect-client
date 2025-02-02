@@ -1,8 +1,7 @@
 import React from 'react'
-import MentorCard from '../components/Mentorship/MentorCard'
-import mentors from '../MockDatas/mentors'
+
 import ProfileCard from '../components/Mentorship/ProfileCard';
-import Footer from '../components/Footer';
+
 import FilterComponent from '../components/Mentorship/FilterComponent';
 const mockUserData = {
     profileImage: 'https://www.preplaced.in/_next/image?url=https%3A%2F%2Ffirebasestorage.googleapis.com%2Fv0%2Fb%2Fpreplaced-upload-prod%2Fo%2Fmentor-dashboard%252Fprofile-picture%252FAjay%2520Yadava%2520-%2520rec9aydndxoYWa17i%3Falt%3Dmedia%26token%3D120366e9-4828-47a1-82a7-4114821db964&w=96&q=75',

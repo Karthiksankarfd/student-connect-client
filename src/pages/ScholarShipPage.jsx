@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import JobListCard from '../components/Oppurtunity/JobListCard';
+
 import ScholarShipDetailCard from '../components/Oppurtunity/ScholarShipDetailCard';
 import ScholarShipListCard from '../components/Oppurtunity/ScholarShipListCard';
 import scholarships from '../MockDatas/scholarships';

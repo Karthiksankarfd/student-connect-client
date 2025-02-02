@@ -1,11 +1,11 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { PostContext } from "../context/PostContext";
 import API from "../services/API";
 import { UserLoggedInStateContext } from "../context/UserLoggedInContext";
 // import { PostContext } from "../context/PostContext.jsx";
 
 const usePostActions = () => {
-  const { setPosts, comments, setComments, setShowComment } =
+  const { setPosts,  setComments, setShowComment } =
     useContext(PostContext);
   const { isLoggedIn } = useContext(UserLoggedInStateContext);
 

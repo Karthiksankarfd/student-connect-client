@@ -1,7 +1,7 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 // import Button from "./Button"
 // import PersonalInformation from "./userdatailscomponents/PersonalInformation"
-import { useContext, useEffect } from "react";
+import { useContext} from "react";
 import { SignupContext } from "../../context/SignupContext";
 import useSignup from "../../hooks/useSignup";
 import { GoogleLogin } from "@react-oauth/google";

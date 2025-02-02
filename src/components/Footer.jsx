@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const Footer = () => {
   return (
@@ -11,25 +12,25 @@ const Footer = () => {
                 <div>
                 <h3 class="text-lg font-bold mb-4">Quick Links</h3>
                 <ul>
-                    <li><a href="#" class="text-sm hover:underline">Home</a></li>
-                    <li><a href="#" class="text-sm hover:underline">Features</a></li>
-                    <li><a href="#" class="text-sm hover:underline">Contact</a></li>
+                    <li><Link class="text-sm hover:underline">Home</Link></li>
+                    <li><Link class="text-sm hover:underline">Features</Link></li>
+                    <li><Link class="text-sm hover:underline">Contact</Link></li>
                 </ul>
                 </div>
                 <div>
                 <h3 class="text-lg font-bold mb-4">Support</h3>
                 <ul>
-                    <li><a href="#" class="text-sm hover:underline">FAQs</a></li>
-                    <li><a href="#" class="text-sm hover:underline">Privacy Policy</a></li>
-                    <li><a href="#" class="text-sm hover:underline">Terms of Service</a></li>
+                    <li><Link class="text-sm hover:underline">FAQs</Link></li>
+                    <li><Link class="text-sm hover:underline">Privacy Policy</Link></li>
+                    <li><Link class="text-sm hover:underline">Terms of Service</Link></li>
                 </ul>
                 </div>
                 <div>
                 <h3 class="text-lg font-bold mb-4">Follow Us</h3>
                 <div class="flex space-x-4">
-                    <a href="#" class="text-sm hover:underline">Twitter</a>
-                    <a href="#" class="text-sm hover:underline">Instagram</a>
-                    <a href="#" class="text-sm hover:underline">LinkedIn</a>
+                    <Link class="text-sm hover:underline">Twitter</Link>
+                    <Link class="text-sm hover:underline">Instagram</Link>
+                    <Link class="text-sm hover:underline">LinkedIn</Link>
                 </div>
                 </div>
             </div>

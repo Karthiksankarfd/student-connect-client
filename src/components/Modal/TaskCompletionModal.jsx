@@ -1,5 +1,5 @@
 import React from 'react'
-import { FaCheck } from 'react-icons/fa'
+
 
 const TaskCompletionModal = ({task,png,btnName,fn}) => {
   return (

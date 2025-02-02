@@ -1,6 +1,6 @@
 import React from 'react'
 import { BsThreeDotsVertical } from 'react-icons/bs'
-import { FaArrowAltCircleLeft, FaArrowRight, FaArrowUp, FaMoneyBill, FaUber } from 'react-icons/fa'
+import { FaArrowRight } from 'react-icons/fa'
 
 const OppurtunityDetailCard = ({    title,
     companyImage,

@@ -1,5 +1,5 @@
-import React, { useContext, useState } from 'react'
-import EventDetail from './Events/EventDetail'
+import React, { useContext } from 'react'
+
 import { EventContext } from '../context/EventDetailContext' 
 
 const ShortEventInfoCard2 = ({...event}) => {

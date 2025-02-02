@@ -3,14 +3,11 @@ import {
   FaBell,
   FaComment,
   FaHamburger,
-  FaMale,
-  FaPlug,
   FaPlus,
   FaSearch,
 } from "react-icons/fa";
 import { Link, NavLink } from "react-router-dom";
 import { ModalContext } from "../context/ModalContext";
-import loggedInuser from "../MockDatas/loggedInuser";
 import { UserLoggedInStateContext } from "../context/UserLoggedInContext";
 
 const NavbarFinal = () => {

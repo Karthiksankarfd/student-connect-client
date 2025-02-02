@@ -1,5 +1,5 @@
 import React from 'react'
-import { FaClock, FaTimes } from 'react-icons/fa'
+import { FaClock } from 'react-icons/fa'
 
 // image={event.image}  name={event.name} eventDescription={event.description} venue={event.venue} time={event.time}
 const EventCard = ({image,name,date,venue,eventDescription,time}) => {

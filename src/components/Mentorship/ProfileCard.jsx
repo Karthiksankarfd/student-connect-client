@@ -1,6 +1,6 @@
 import React from 'react';
 import { FaLanguage } from 'react-icons/fa';
-import Footer from '../Footer';
+
 
 const ProfileCard = ({ user }) => {
   return (
