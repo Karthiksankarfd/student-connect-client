@@ -77,7 +77,7 @@ const EventDetail = ({...event}) => {
 
     {/* fifth section  */}
     <div className='col-span-12 lg:col-span-3 m-5 bg-white'>
-    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3889.0606987705546!2d77.6275443757225!3d12.90381851635937!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae14f7928e6ee3%3A0xbed158cdd9b74fe0!2sICAT%20DESIGN%20%26%20MEDIA!5e0!3m2!1sen!2sin!4v1736364711477!5m2!1sen!2sin" width="200" height="200"  allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    <iframe title='location' src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3889.0606987705546!2d77.6275443757225!3d12.90381851635937!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae14f7928e6ee3%3A0xbed158cdd9b74fe0!2sICAT%20DESIGN%20%26%20MEDIA!5e0!3m2!1sen!2sin!4v1736364711477!5m2!1sen!2sin" width="200" height="200"  allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
 </div>
 
