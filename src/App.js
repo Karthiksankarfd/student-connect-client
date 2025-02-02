@@ -11,10 +11,6 @@ import PersonalInformation from './components/userdatailscomponents/PersonalInfo
 import SignupContextProvider from './context/SignupContext';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import Profile from './pages/Profile';
-import Navbar from './components/Navbar';
-import MainLayout from './pages/MainLayout';
-import NavbarVertical from './components/NavbarVertical';
-import PostUploadModal from './components/Modal/PostUploadModal';
 import ModalContextProvider from './context/ModalContext';
 import PostUploadDatacontext from "./context/PostUploadDatacontext";
 import NotificationPage from './pages/NotificationPage';

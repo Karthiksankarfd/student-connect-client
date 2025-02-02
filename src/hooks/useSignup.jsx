@@ -8,7 +8,7 @@ import { UserLoggedInStateContext } from '../context/UserLoggedInContext'
 const useSignup = () => {
 
     const {isLoading, setIsLoading,loggedInuser,setLoggedInuser} = useContext(UserLoggedInStateContext)
-    // isLoading, setIsLoading,
+ 
     const{setSignUpUser,signUpUser,setSignUpError} = useContext(SignupContext)
 
     const{validatePassword} = useLogin()
@@ -29,9 +29,6 @@ const useSignup = () => {
     formData.append('githubUrl', signUpUser.githubUrl);
     // user.areasInterestedIn is an array so by using index we are upadting the value
     signUpUser.areasInterestedIn.forEach((area,index)=> formData.append(`areasInterestedIn[${index}]`, area) )
-    // for (let pair of formData.entries()) {
-    //     console.log(pair[0] + ': ' + pair[1]);
-    //   }
     const isMailExist = async (e) => {
         e.preventDefault();
 
@@ -73,8 +70,7 @@ const useSignup = () => {
       
     // this updates some component state so i memozied this function 
     const isvalidpassord = useMemo(() => validatePassword(signUpUser.password), [signUpUser.password]);
-    // const isvalidpassord = () => validatePassword(signUpuser.password);
-    // const isvalidpassord =  validatePassword(signUpuser.password);
+
     
     const isPasswordMatchig = ()=>{
             if(isvalidpassord){
@@ -115,4 +111,4 @@ const useSignup = () => {
   return {isMailExist,createUser,confirmPassword,setConfirmPassword,isPasswordMatchig}
 }
 
-export default useSignup
+export default useSignup;
