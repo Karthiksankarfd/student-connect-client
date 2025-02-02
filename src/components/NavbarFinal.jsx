@@ -14,21 +14,18 @@ import loggedInuser from "../MockDatas/loggedInuser";
 import { UserLoggedInStateContext } from "../context/UserLoggedInContext";
 
 const NavbarFinal = () => {
+
   const{loggedInuser, isLoggedIn} = useContext(UserLoggedInStateContext)
   const[isDarkMode, setIsDarkMode]= useState(false)
-
-  const handleToggle = () => {
-
-    setIsDarkMode(!isDarkMode);
-
-    document.documentElement.classList.toggle('dark', !isDarkMode);
-
-  };
-
-
-
   const { setIsUploadModal, setIsModalActive } = useContext(ModalContext);
   const [isNavbarActive, setisNavbarActive] = useState(false);
+
+  const handleToggle = () => {
+    setIsDarkMode(!isDarkMode);
+    document.documentElement.classList.toggle('dark', !isDarkMode);
+  };
+
+  
   return (
     <nav className="nav-bar-final   flex justify-between text-sm w-full  place-items-center p-2  dark:bg-black dark:text-white bg-white text-black transition-all shadow-gradient-to-b from-purple-500 shadow-gray-300 shadow-sm sticky  top-0 z-[10]"   >
       {/* <img src="" alt="logo" /> */}
@@ -102,6 +99,7 @@ const NavbarFinal = () => {
       <div className="search-bar lg:w-1/5">
         <div className=" h-fit  block relative ">
           <input
+          onChange={(e)=>{console.log(e.target.value)}}
             type="text"
             placeholder="serach ... "
             className="  py-1 px-3 border-2 lg:rounded-xl w-full text-gray-400  dark:bg-black/90 border-gray-400 "

@@ -8,16 +8,16 @@ const LoginPage = () => {
     const{isLoading} = useContext(UserLoggedInStateContext) 
   return (
 <>
-<section className="login-form-container dark w-full min-h-screen grid place-items-center ">
+<section className="login-form-container   w-full min-h-screen grid place-items-center bg-white">
 
-<form className="p-6 rounded-lg border-2  max-w-md w-full" onSubmit={login}>
+<form className="p-6 rounded-lg  max-w-md w-full" onSubmit={login}>
 
-     <p className="white text-start mb-5 text-[30px] text-[#0057FF]">Login</p>
+     <p className="white text-center mb-5 text-[30px] text-[#0057FF]">Login</p>
 
           <div className=" flex flex-col items-start ">
               <label
                   htmlFor="email"
-                  className="white block text-gray-500 text-sm font-medium mb-2"
+                  className="white block text-gray-500 text-sm font-medium mb-1"
               >
                   Email
               </label>
@@ -27,14 +27,14 @@ const LoginPage = () => {
                   name="email"
                   id="email"
                   value={email}
-                  className="px-3 py-2 w-full border border-gray-300 rounded-md focus:outline-none mb-2 "
+                  className="px-3 py-2 w-full border-b border-gray-300  focus:outline-none mb-2 "
               />
               {!validateEmail && emailError}
           </div>
           <div className="flex flex-col items-start ">
               <label
                   htmlFor="password"
-                  className="white block text-gray-500 text-sm font-medium mb-2"
+                  className="white block text-gray-500 text-sm font-medium mb-1"
               >
                   Password
               </label>
@@ -45,9 +45,9 @@ const LoginPage = () => {
                   name="password"
                   id="password"
                   value={reqpassword}
-                  className="px-3 py-2 w-full border border-gray-300 rounded-md focus:outline-none mb-2"
+                  className="px-3 py-2 w-full border-b border-gray-300  focus:outline-none mb-2"
               />
-              <p className="error-msg text-red-500 text-xs mb-2">{error}</p>
+              <p className="error-msg text-red-500 text-sm mb-2">{error}</p>
               {!validatePassword && passwordError}
 
               <Link className="text-[#0057FF] text-start text-sm mb-2">Forget Password ?</Link>

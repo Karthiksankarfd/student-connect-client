@@ -94,16 +94,18 @@ const useSignup = () => {
 
  const createUser = async(e)=>{
         e.preventDefault();
-    try{
 
-        const createUser = await API.post("/auth/signupandcreateuser",formData,{headers:{
+    try{
+        const createUser = await API.post("/auth/signupandcreateuser",formData,{
+            headers:{
             "content-type":"multipart/form-data"
-        }})
+        }
+    })
 
         if(createUser.status === 201){
             console.log("user created successfully ...")
             setLoggedInuser(createUser.data.user)
-            navigate("/stntcnthome")
+            navigate("/emaillogin")
         }
     }catch(e){
         console.error(e)

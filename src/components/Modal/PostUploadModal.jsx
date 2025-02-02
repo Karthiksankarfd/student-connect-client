@@ -40,7 +40,7 @@ const PostUploadModal = () => {
       });
     };
   }, []);
-  // Empty dependency array means this runs only on unmount
+ 
 
   return (
     <>
@@ -157,10 +157,11 @@ const PostUploadModal = () => {
           )}
 
           {isUploading && (
-            <TaskCompletionModal
+            <TaskCompletionModal 
               task="Post Uploading"
               btnName="Done"
               png={<FaUpload size="20px" className="animate-pulse" />}
+              
             />
           )}
           {isUploaded && (
@@ -168,6 +169,10 @@ const PostUploadModal = () => {
               task="Post Upload Successful"
               btnName="Done"
               png={<FaCheck size="20px" className="animate-pulse" />}
+              fn={() => {
+                    setIsUploadModal(false);
+                    setIsModalActive(false);
+                  }}
             />
           )}
           {isUploadFailed && (

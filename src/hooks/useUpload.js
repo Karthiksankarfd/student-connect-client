@@ -13,34 +13,29 @@ const useUpload = () => {
 
   const [postData, setPostData] = useState(null);
   const [uploadError, setUploadError] = useState(null);
-  const { setIsUploaded, setIsUploadModal, setIsUploading, setIsUploadFailed } =
-    useContext(ModalContext);
-  const { postContent, setPostContent, previewUrls, setPreviewUrls } =
-    useContext(PostDataContext);
+  const { setIsUploaded, setIsUploadModal, setIsUploading, setIsUploadFailed } = useContext(ModalContext);
+  const { postContent, setPostContent, previewUrls, setPreviewUrls } = useContext(PostDataContext);
 
   //* fn to setpost
   const handlePostfilechange = (e) => {
-    
-    previewUrls.forEach((url) => URL.revokeObjectURL(url));
-    const files = Array.from(e.target.files);
 
-    // Extract name and value from the event target
+    previewUrls.forEach((url) => URL.revokeObjectURL(url));
+    // Array.from(e.target.files) will form the array 
+    const files = Array.from(e.target.files);
+    // Extract name and value from the event target this is to show preview of the images uploaded
     setPostContent((prevPost) => ({
       ...prevPost,
       images: files,
       maxCount: files.length,
     }));
-
     const urls = files.map((file) => URL.createObjectURL(file));
     setPreviewUrls(urls);
-  };
 
+  };
 
   const handleCaptinChange = (e) => {
     setPostContent((prevData) => ({ ...prevData, caption: e.target.value }));
   };
-
-
 
   // * fn to upload post
   const uploadPostfn = async () => {
@@ -72,9 +67,7 @@ const useUpload = () => {
         return null;
 
       } finally {
-
         setIsUploading(false); // Reset uploading state no matter what
-
       }
   };
 

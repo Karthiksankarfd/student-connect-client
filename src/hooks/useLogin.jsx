@@ -45,12 +45,13 @@ const useLogin = () => {
   const login = async (e) => {
     try {
       e.preventDefault();
+      setError("")
       // Validate email and password
       const isEmailValid = validateEmail(email);
       const isPasswordValid = validatePassword(reqpassword);
       // If either validation fails, stop execution
       if (!isEmailValid || !isPasswordValid) {
-        console.log("Validation failed");
+        setError("please provide valid credentials to login");
         return;
       }
       setIsLoading(true)
@@ -77,6 +78,7 @@ const useLogin = () => {
         console.log("Server message:", e.response.data.msg);
         setError(e.response.data.msg);
       } else {
+        setError(e.response.data.msg);
         console.error("Unexpected error:", e);
       }
     }

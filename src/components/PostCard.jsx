@@ -111,7 +111,6 @@ const PostCard = ({
 
       <div className="flex gap-x-2 w-full max-w-full overflow-x-auto justify-center">
         {imageUrl.map((file, index) => <LazyLoadMedia key={index} src={file}/>
-
         )}
       </div>
       
@@ -134,11 +133,11 @@ const PostCard = ({
             </span>
             <span>
               {" "}
-              <FaRegComment className="text-white cursor-pointer hover:text-blue-500" />
+              <FaRegComment className="dark:text-white cursor-pointer hover:text-blue-500" />
             </span>
-            <FaShare className="text-white cursor-pointer hover:text-green-500" />
+            <FaShare className="dark:text-white cursor-pointer hover:text-green-500" />
           </div>
-          <FaBookmark className="text-white cursor-pointer hover:text-yellow-500" />
+          <FaBookmark className="dark:text-white cursor-pointer hover:text-yellow-500" />
         </div>
 
         {/* Liked By Section */}

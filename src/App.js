@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import './App.css';
 import { Route, Routes } from 'react-router-dom';
 import WelcomePage from './pages/WelcomePage';
@@ -29,8 +29,11 @@ import MentorsListPage from './pages/MentorsListPage';
 import OppurtunityPage from './pages/OppurtunityPage';
 import ScholarshipPage from './pages/ScholarShipPage';
 import IndexPageOfOppurtunity from './pages/IndexPageOfOppurtunity';
-import UserLoggedInContextProvider from './context/UserLoggedInContext';
+import UserLoggedInContextProvider, { UserLoggedInStateContext } from './context/UserLoggedInContext';
 import PostContextProvider from './context/PostContext';
+import MultiRoleLogin from './components/Login/MultiRoleLogin';
+import LaunchLoader from "./components/Loaders/LaunchLoader"
+import ProtectedComponent, { AuthContext } from './context/ProtectedComponent';
 function App() {
   // function checkNetworkConnection(){
   //    let rtt = navigator.connection.rtt
@@ -42,10 +45,11 @@ function App() {
   // useEffect(()=>{
   //   checkNetworkConnection()
   // },[])
-  
+
   return (
+    <UserLoggedInContextProvider>
     <GoogleOAuthProvider clientId="1069161712161-81cigu02ov4da1jf6ku1bni0a4v5m696.apps.googleusercontent.com">
-            <UserLoggedInContextProvider>
+            
               <PostContextProvider>
                 <EventDetailContext>
                   <PostUploadDatacontext>
@@ -55,35 +59,28 @@ function App() {
                             <Routes>
                               <Route path="/" element={<WelcomePage />} />
                               {/* Parent Route */}
-                              <Route path="/stntcnthome" element={<HomePage />}>
-                                    <Route index element={<IndexPage/>}/>
-                                    <Route path="/stntcnthome/profile" element={<Profile/>} />
-                                    <Route path="/stntcnthome/community" element={<Community/>} />
-                                    <Route path="/stntcnthome/mentorship" element = {<MentorshipPage/>}/>
-                                    <Route path="/stntcnthome/Opportunities" element={<OppurtunityPage/>}>
-                                        <Route index element={<IndexPageOfOppurtunity/>}/>
-                                        <Route path="/stntcnthome/Opportunities/scholarships" element={<ScholarshipPage/>}/>
-                                    </Route> 
-                                    <Route path="/stntcnthome/mentorship/mentorlist" element = {<MentorsListPage/>}/>
-                                    <Route path="/stntcnthome/events" element={<Events/>} > 
-                              </Route>
-                                  
-                  
-                                        {/* <Route path ="/stnstcnthome/events/:id" elements = {<EventDetailPage/>} /> */}
-                                        {/* <Route path ="detail" element = {<EventDetail/>} /> */}
-                                  
-                                    <Route path ="/stntcnthome/events/detail" element = {<EventDetailPage/>} />
-                              </Route>
-                              {/* <Route path="/stntcnthome" element={<MainLayout />}>
-                                      <Route index element={<HomePage/>}/>
-                                      <Route path="/stntcnthome/notifications" element={<NotificationPage/>} />
-                              </Route> */}
-                              {/* Nested Profile Route */}
-                              <Route path="/emaillogin" element={<LoginPage />} />
-                              <Route path="/signup" element={<StepOneEmail />} />
-                              <Route path="/signuppassword" element={<StepTwoPassword />} />
-                              <Route path="/areasinterestedin" element={<InterestedIn />} />
-                              <Route path="/profileUpload" element={<PersonalInformation />} />
+                                      <Route path="/stntcnthome" element={<HomePage />  }>
+                                            <Route index element={<IndexPage/>}/>
+                                            <Route path="/stntcnthome/profile" element={  <Profile/> } />
+                                            <Route path="/stntcnthome/community" element={<ProtectedComponent><Community/></ProtectedComponent>  } />
+                                            <Route path="/stntcnthome/mentorship" element = {<MentorshipPage/>}/>
+                                            <Route path="/stntcnthome/Opportunities" element={<OppurtunityPage/>}>
+                                                <Route index element={<IndexPageOfOppurtunity/>}/>
+                                                <Route path="/stntcnthome/Opportunities/scholarships" element={<ScholarshipPage/>}/>
+                                            </Route> 
+                                            <Route path="/stntcnthome/mentorship/mentorlist" element = {<MentorsListPage/>}/>
+                                            <Route path="/stntcnthome/events" element={<Events/>} > 
+                                      </Route>
+                                            {/* <Route path ="/stnstcnthome/events/:id" elements = {<EventDetailPage/>} /> */}
+                                            {/* <Route path ="detail" element = {<EventDetail/>} /> */}
+                                            <Route path ="/stntcnthome/events/detail" element = {<EventDetailPage/>} />
+                                    </Route>
+                                  {/* Nested Profile Route */} 
+                                  <Route path="/emaillogin" element={<LoginPage />} />
+                                  <Route path="/signup" element={<StepOneEmail />} />
+                                  <Route path="/signuppassword" element={<StepTwoPassword />} />
+                                  <Route path="/areasinterestedin" element={<InterestedIn />} />
+                                  <Route path="/profileUpload" element={<PersonalInformation />} />
                             </Routes>
                           </div>
                         </SignupContextProvider>
@@ -91,8 +88,9 @@ function App() {
                 </PostUploadDatacontext>
             </EventDetailContext>
       </PostContextProvider>
-      </UserLoggedInContextProvider>
+  
     </GoogleOAuthProvider>
+    </UserLoggedInContextProvider>
   );
 }
 

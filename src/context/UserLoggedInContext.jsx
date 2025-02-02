@@ -29,7 +29,6 @@ const UserLoggedInContextProvider = ({children}) => {
                }
             }
         )
-                
                 if(req.status === 201){
                     setIsLoading(false)
                     setIsloggedIn(true)
@@ -37,7 +36,6 @@ const UserLoggedInContextProvider = ({children}) => {
                     navigate("/stntcnthome")
                 }
                 
-       
         }catch(e){
             console.log(e,"This is from cath block")
         }finally{
