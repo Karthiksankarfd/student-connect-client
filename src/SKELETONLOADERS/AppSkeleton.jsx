@@ -1,13 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
 const AppSkeleton = () => {
-  const [isLoading, setIsLoading] = useState(true);
 
-  // Simulate a loading period (e.g., fetching data)
-  useEffect(() => {
-    const timer = setTimeout(() => setIsLoading(false), 3000); // Adjust time as needed
-    return () => clearTimeout(timer);
-  }, []);
 
   return (
     <div className="min-h-screen bg-gray-100">

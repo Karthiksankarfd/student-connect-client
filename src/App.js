@@ -18,16 +18,15 @@ import Community from './pages/Community';
 import Events from './pages/Events';
 import EventDetailPage from './pages/EventDetailPage';
 import MentorshipPage from './pages/MentorshipPage';
-import EventDetail from './components/Events/EventDetail';
 import EventDetailContext from './context/EventDetailContext';
 import MentorsListPage from './pages/MentorsListPage';
 import OppurtunityPage from './pages/OppurtunityPage';
 import ScholarshipPage from './pages/ScholarShipPage';
 import IndexPageOfOppurtunity from './pages/IndexPageOfOppurtunity';
-import UserLoggedInContextProvider, { UserLoggedInStateContext } from './context/UserLoggedInContext';
+import UserLoggedInContextProvider from './context/UserLoggedInContext';
 import PostContextProvider from './context/PostContext';
 
-import ProtectedComponent, { AuthContext } from './context/ProtectedComponent';
+import ProtectedComponent from './context/ProtectedComponent';
 function App() {
   // function checkNetworkConnection(){
   //    let rtt = navigator.connection.rtt
