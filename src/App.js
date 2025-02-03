@@ -43,7 +43,7 @@ function App() {
 
   return (
     <UserLoggedInContextProvider>
-      <SpeedInsights />
+      
       <GoogleOAuthProvider clientId="1069161712161-81cigu02ov4da1jf6ku1bni0a4v5m696.apps.googleusercontent.com">
         <SearchContextProvider>
           <PostContextProvider>
@@ -52,6 +52,7 @@ function App() {
                 <ModalContextProvider>
                   <SignupContextProvider>
                     <div className="App " >
+                    <SpeedInsights />
                       <Routes>
                         <Route path="/" element={<WelcomePage />} />
                         {/* Parent Route */}
