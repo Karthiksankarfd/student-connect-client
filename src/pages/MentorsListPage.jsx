@@ -36,8 +36,8 @@ const mockUserData = {
 const MentorsListPage = () => {
   return (
 <div className="mentors_list w-full gap-0 ">
-      <div className='mx-20 grid grid-cols-2'>
-            <div className='col-span-2 lg:col-span-1 border-[1px]'>
+      <div className='lg:mx-20 grid grid-cols-2'>
+            <div className='col-span-2 lg:col-span-1 lg:border-[1px]'>
                 <ProfileCard user={mockUserData} />
             </div>
           

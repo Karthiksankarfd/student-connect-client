@@ -3,7 +3,7 @@ import { FaLanguage } from 'react-icons/fa';
 
 const MentorCard = ({ id, name, expertise, experience, about, profileImage, rating, availableSlots,bio ,location,languages,country}) => {
   return (
-    <div className="mentor_card bg-white text-black shadow-lg dark:bg-black dark:text-white p-5 flex gap-x-5 lg:w-[calc(100%-70%)]" key={id} >
+    <div className="mentor_card bg-white text-black shadow-lg dark:bg-black dark:text-white p-5 flex gap-x-5  lg:w-[calc(100%-70%)]  " key={id} >
       {/* Image Section */}
       {/* <div className="details_container_main"> */}
         <img src={profileImage} alt={name} className="mentor_image items-stretch object-cover" />
