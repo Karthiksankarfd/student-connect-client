@@ -28,7 +28,7 @@ import PostContextProvider from './context/PostContext';
 import ProtectedComponent from './context/ProtectedComponent';
 import SearchContextProvider from './context/searchContext';
 import SearchResultsPage from "./pages/SearchResultsPage"
-import { SpeedInsights } from "@vercel/speed-insights/react";
+import { SpeedInsights } from "@vercel/speed-insights/react"
 function App() {
   // function checkNetworkConnection(){
   //    let rtt = navigator.connection.rtt
