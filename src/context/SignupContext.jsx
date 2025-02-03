@@ -1,4 +1,4 @@
-import React, { createContext, useState,children  } from 'react';
+import React, { createContext, useState } from 'react';
 
 export const SignupContext = createContext();
 

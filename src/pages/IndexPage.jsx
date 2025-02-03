@@ -24,7 +24,7 @@ const IndexPage = () => {
     // Simulate a login process (e.g., API call)
     setTimeout(() => {
       setIsDummyLoading(false);
-      alert("Login Successful!"); // Replace with your post-login logic
+      //alert("Login Successful!"); // Replace with your post-login logic
     }, 2000); // Adjust the timeout as needed
   };
 
@@ -39,7 +39,7 @@ const IndexPage = () => {
         <AppSkeleton />
       ) : (
         <section className="flex justify-center">
-          <div className="grid grid-cols-12  gap-7 mt-5  md:mx-[calc(100%-90%)]">
+          <div className="grid grid-cols-12  gap-7 lg:mt-5  md:mx-[calc(100%-90%)]">
             {/* Sidebar/User Profile Section */}
             <aside className="col-span-full hidden md:block lg:col-span-3 h-dvh overflow-y-scroll">
               <div className="p-3 mb-5 bg-white dark:bg-black dark:text-white shadow-lg rounded-lg">

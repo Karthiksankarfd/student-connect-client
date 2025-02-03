@@ -5,7 +5,7 @@ import { useSearchParams } from 'react-router-dom';
 import JobListCard from '../components/Oppurtunity/JobListCard';
 
 const IndexPageOfOppurtunity = () => {
-    const [searchParams, setSearchParams] = useSearchParams("CURRENTJOBID");
+    const [searchParams, setSearchParams] = useSearchParams();
     // const CURRENTJOBID = searchParams.get("CURRENTJOBID")
     const[currentJob,  setCurrentJob] = useState(jobs[0])
   return (

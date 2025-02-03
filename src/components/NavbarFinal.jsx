@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   FaBell,
   FaComment,
@@ -9,6 +9,9 @@ import {
 import { Link, NavLink } from "react-router-dom";
 import { ModalContext } from "../context/ModalContext";
 import { UserLoggedInStateContext } from "../context/UserLoggedInContext";
+import { useSearchParams } from 'react-router-dom' 
+import useSearch from "../hooks/useSearch";
+
 
 const NavbarFinal = () => {
 
@@ -16,20 +19,33 @@ const NavbarFinal = () => {
   const[isDarkMode, setIsDarkMode]= useState(false)
   const { setIsUploadModal, setIsModalActive } = useContext(ModalContext);
   const [isNavbarActive, setisNavbarActive] = useState(false);
+  const[querySearchParams, setQuerySearchParams] = useSearchParams({q :""})
+  const {fetchSearchResults} = useSearch()
 
   const handleToggle = () => {
     setIsDarkMode(!isDarkMode);
     document.documentElement.classList.toggle('dark', !isDarkMode);
   };
 
-  
+  useEffect(()=>{
+    fetchSearchResults(querySearchParams.get("q"))
+    // console.log(querySearchParams.get("q"))
+  },[querySearchParams])
+
+
   return (
     <nav className="nav-bar-final   flex justify-between text-sm w-full  place-items-center p-2  dark:bg-black dark:text-white bg-white text-black transition-all shadow-gradient-to-b from-purple-500 shadow-gray-300 shadow-sm sticky  top-0 z-[10]"   >
       {/* <img src="" alt="logo" /> */}
-      <FaHamburger
+      {/* <FaHamburger
           onClick={() => setisNavbarActive(!isNavbarActive)}
           className="block lg:hidden"
-        />
+        /> */}
+      <div onClick={() => setisNavbarActive(!isNavbarActive)}
+          className="block lg:hidden">
+        <div className="hambugermenu h-[4px] w-6 bg-black dark:bg-white mb-1"></div>
+        <div className="hambugermenu h-[4px] w-6 bg-black dark:bg-white mb-1"></div>
+        <div className="hambugermenu h-[4px] w-6 bg-black dark:bg-white"></div>
+      </div>  
       <h1 className="font-semibold text-xl text-[#6c63ff] hidden lg:block col-span-1 w-fit">
         StudentConnect
       </h1>
@@ -90,20 +106,25 @@ const NavbarFinal = () => {
                         LearnLab
                         {/* <FaBook/>  */}
                       </NavLink>
+                      
                     </div>
                   </div>
                 )}
       <div className="search-bar lg:w-1/5">
         <div className=" h-fit  block relative ">
+        <form action="" className="flex items-center">
           <input
-          onChange={(e)=>{console.log(e.target.value)}}
-            type="text"
+            id="search"
+            onChange={(e)=>{setQuerySearchParams({q : e.target.value})}}
+            type="search"
             placeholder="serach ... "
-            className="  py-1 px-3 border-2 lg:rounded-xl w-full text-gray-400  dark:bg-black/90 border-gray-400 "
+            className="  py-1 px-3 border-2  w-full text-gray-400  dark:bg-black/90 border-gray-400 "
           />
-          <button>
+          {/* <label htmlFor="search" className="py-1 px-3 ml-3 bg-blue-500 text-white">search</label> */}
+        </form>
+          <label htmlFor="search" cal >
             <FaSearch className=" text-gray-400 absolute top-1/2 left-[95%] -translate-x-1/2 -translate-y-1/2 " />
-          </button>
+          </label>
         </div>
       </div>
 
@@ -187,10 +208,10 @@ const NavbarFinal = () => {
       {/* call to action icons  */}
       <div className="call-to-action-icons  w-fit flex   items-center justify-between ">
         <div className="profile flex  items-center relative w-fit h-fit group gap-x-4">
-        <div className="relative">
+        <div className="relative hidden md:block">
             <NavLink to ="notifications"><FaBell /></NavLink>
         </div>
-        <div className="relative">
+        <div className="relative hidden md:block">
           <FaComment title="chats" />
         </div>
         {/* visible only when user loggedin is true */}
@@ -198,12 +219,12 @@ const NavbarFinal = () => {
           <Link to="/stntcnthome/profile" className="">
                   <img
                     src={loggedInuser?.profilePhotoUrl || "https://www.pngall.com/wp-content/uploads/5/Profile-PNG-Images.png"}
-                    alt=""
+                    alt="profile"
                     className="h-8 w-8 object-cover rounded-full aspect-square"
                   />
-                </Link>
+          </Link>
       
-                <div className="absolute top-6 z-50 right-6 w-[100px] border-2 border-black  hidden group-hover:block transition-all delay-100  bg-white dark:bg-black text-sm font-semibold cursor-pointer  py-2 px-2 shadow-xl rounded-xl">
+                <div className="absolute hidden top-6 z-50 right-6 w-[100px] border-2 border-black   transition-all delay-100  bg-white dark:bg-black text-sm font-semibold cursor-pointer  py-2 px-2 shadow-xl rounded-xl">
                   <ul className="list-none ">
                     <li
                       onClick={() => {
@@ -213,15 +234,13 @@ const NavbarFinal = () => {
                     >
                       <Link>Upload post</Link>
                     </li>
-                    <li>
-                      <Link>Upload post</Link>
-                    </li>
+                 
                   </ul>
                 </div>
-                <FaPlus
+                {/* <FaPlus
                   title="upload post"
                   className="absolute  rounded-full text-black top-4 right-5  cursor-pointer bg-white"
-                />
+                /> */}
         </>) : (
               <Link to="/emaillogin" className="p-2 bg-blue-600 text-white ">Login</Link>
             ) }

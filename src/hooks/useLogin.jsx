@@ -55,17 +55,13 @@ const useLogin = () => {
       }
       setIsLoading(true)
       setloading(true);
-   
-
       const loginreq = await API.post(`/auth/login`, { email, reqpassword });
-
       if (loginreq.status === 201) {
-        setLoggedInuser(loginreq.data.user);
+        console.log(loginreq.data)
+        setLoggedInuser(loginreq?.data?.user);
         setIsloggedIn(true);
         localStorage.setItem("authtoken", loginreq.data.authtoken);
-
         setloading(false);
-
         // console.log("Setting loader to false", loginreq.data);
         navigate("/stntcnthome");
       }
