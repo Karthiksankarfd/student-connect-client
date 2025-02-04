@@ -17,9 +17,8 @@ const useSearch = () => {
             // const res =  await API.get(`/search?query=${searchTerm}`)
             const res = await API.get('/search', { params: { query: searchTerm } });
             if(res.status === 200){
-               //  navigate("searchresultpage")
-                console.log(res.data)
                 setSearchResult(res.data)
+                navigate("searchresultpage")
             }
          }catch(e){
             console.log(e, "Error fetching the query")

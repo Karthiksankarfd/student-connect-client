@@ -9,10 +9,11 @@ import NavbarFinal from "../components/NavbarFinal";
 import EventModal from "../components/Modal/EventModal";
 import { ModalContext } from "../context/ModalContext";
 import { UserLoggedInStateContext } from "../context/UserLoggedInContext";
+import EditProfileModal from "../components/Modal/EditProfileModal";
 
 
 const HomePage = () => {
-  const{isEventModalOpen}=useContext( ModalContext)
+  const{isEventModalOpen, isEditProfileModalOpen,loggedInuser}=useContext( ModalContext)
   const{verifyToken} = useContext(UserLoggedInStateContext)
   // window.onbeforeunload = function () {
   //   console.log("Window is being refreshed or navigated away!");
@@ -32,6 +33,8 @@ const HomePage = () => {
         {/* <UseReducer/> */}
         {/* <Todo/> */}
         {isEventModalOpen && <EventModal/>}
+        {/* {isEditProfileModalOpen &&  */}
+        {/* // <EditProfileModal  user = {loggedInuser} />} */}
     </section>
   );
 };

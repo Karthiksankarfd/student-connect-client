@@ -15,7 +15,7 @@ useEffect(  ()=>{
         setisLaunchLoader(false)
     }, 2000);
    
-    // return ()=>setisLaunchLoader(false)
+    return ()=>setisLaunchLoader(false)
 },[])
 
 

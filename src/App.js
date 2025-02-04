@@ -29,6 +29,7 @@ import ProtectedComponent from './context/ProtectedComponent';
 import SearchContextProvider from './context/searchContext';
 import SearchResultsPage from "./pages/SearchResultsPage"
 import { SpeedInsights } from "@vercel/speed-insights/react"
+import Results from './components/SearchResultsPageComponents/Results';
 function App() {
   // function checkNetworkConnection(){
   //    let rtt = navigator.connection.rtt
@@ -72,7 +73,7 @@ function App() {
                           {/* <Route path ="detail" element = {<EventDetail/>} /> */}
                           <Route path="/stntcnthome/events/detail" element={<EventDetailPage />} />
                           <Route path='/stntcnthome/searchresultpage' element={<SearchResultsPage />}>
-                            <Route index element={<h1>This is peoples results page</h1>} />
+                            <Route index element={<Results/>} />
                           </Route>
                         </Route>
                         {/* Nested Profile Route */}

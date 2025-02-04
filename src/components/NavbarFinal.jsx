@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState } from "react";
 import {
   FaBell,
   FaComment,
-  FaHamburger,
   FaPlus,
   FaSearch,
 } from "react-icons/fa";
@@ -25,18 +24,15 @@ const NavbarFinal = () => {
     document.documentElement.classList.toggle("dark", !isDarkMode);
   };
 
-  useEffect(() => {
-    fetchSearchResults(querySearchParams.get("q"));
-    // console.log(querySearchParams.get("q"))
-  }, [querySearchParams]);
+  // useEffect(() => {
+  //   fetchSearchResults(querySearchParams.get("q"));
+  // }, [fetchSearchResults, querySearchParams]);
+
+  
 
   return (
     <nav className="nav-bar-final   flex justify-between text-sm w-full  place-items-center p-2  dark:bg-black dark:text-white bg-white text-black transition-all shadow-gradient-to-b from-purple-500 shadow-gray-300 shadow-sm sticky  top-0 z-[10]">
-      {/* <img src="" alt="logo" /> */}
-      {/* <FaHamburger
-          onClick={() => setisNavbarActive(!isNavbarActive)}
-          className="block lg:hidden"
-        /> */}
+      
       <div
         onClick={() => setisNavbarActive(!isNavbarActive)}
         className="block lg:hidden"
@@ -179,17 +175,18 @@ const NavbarFinal = () => {
         <div className=" h-fit  block relative ">
           <form action="" className="flex items-center">
             <input
+            value={querySearchParams.get("q")}
               id="search"
               onChange={(e) => {
                 setQuerySearchParams({ q: e.target.value });
               }}
-              type="search"
+              type="text"
               placeholder="serach ... "
               className="  py-1 px-3 border-2  w-full text-gray-400  dark:bg-black/90 border-gray-400 "
             />
             {/* <label htmlFor="search" className="py-1 px-3 ml-3 bg-blue-500 text-white">search</label> */}
           </form>
-          <label htmlFor="search" cal>
+          <label htmlFor="search" onClick={()=>{fetchSearchResults(querySearchParams.get("q"))}}>
             <FaSearch className=" text-gray-400 absolute top-1/2 left-[95%] -translate-x-1/2 -translate-y-1/2 " />
           </label>
         </div>

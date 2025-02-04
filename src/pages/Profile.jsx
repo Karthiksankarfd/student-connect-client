@@ -1,13 +1,15 @@
 import React, { useContext } from 'react';
 import { UserLoggedInStateContext } from '../context/UserLoggedInContext';
 import { Link } from 'react-router-dom';
-
 import { FaEdit } from 'react-icons/fa';
+import EditProfileModal from '../components/Modal/EditProfileModal';
+import { ModalContext } from '../context/ModalContext';
 
 const Profile = () => {
 
   const { loggedInuser, isLoggedIn } = useContext(UserLoggedInStateContext);
-
+  const{openEditProfileModal,closeEditProfileModal,isEditProfileModalOpen } = useContext(ModalContext)
+  // var isOpen = false ;
   return (
     <>
       {isLoggedIn ? (
@@ -15,7 +17,7 @@ const Profile = () => {
           {/* User Basic Info */}
           <div className="user_basic_info_container_main p-3 bg-white text-black dark:bg-black dark:text-white shadow-lg w-full rounded-lg lg:col-span-3 col-span-12">
             <button className="float-right" title="Edit Profile">
-              <FaEdit />
+              <FaEdit onClick={openEditProfileModal}/>
             </button>
             <img
               src={loggedInuser?.profilePhotoUrl || 'https://via.placeholder.com/150'}
@@ -158,6 +160,9 @@ const Profile = () => {
       ) : (
         <p  className="text-center text-xl h-dvh">Please log in to view the profile.</p>
       )}
+
+      {isEditProfileModalOpen && 
+      <EditProfileModal  user = {loggedInuser} onClose={closeEditProfileModal}/>}
     </>
   );
 };
