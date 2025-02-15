@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react'
 import API from '../services/API';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 const { createContext } = require("react");
 
 export const UserLoggedInStateContext = createContext()
@@ -11,15 +11,21 @@ const UserLoggedInContextProvider = ({children}) => {
       const[isLoading, setIsLoading] = useState(false)
       const[isLoggedIn, setIsloggedIn] = useState(false)
       const[loggedInuser , setLoggedInuser] = useState()
-      const[posts, setPosts] = useState()
+      const[posts, setPosts] = useState();
+
+      const location = useLocation()
+      // Extract query parameters from the URL
+      const queryParams = new URLSearchParams(location);
 
       const verifyToken = async ()=>{
         let token = localStorage.getItem("authtoken")
         if(!token){
+            // console.log(isLoading)
             console.log("No token Found")
             return;
         }
         setIsLoading(true)
+        console.log(isLoading)
         try{
             let req =  await API.post("/auth/verifytoken",{token},
                 {
@@ -32,14 +38,23 @@ const UserLoggedInContextProvider = ({children}) => {
                 if(req.status === 201){
                     setIsLoading(false)
                     setIsloggedIn(true)
-                    setLoggedInuser(req.data.user)
-                    navigate("/stntcnthome")
+                    console.log(isLoading)
+                    setLoggedInuser(req.data.user);
+                    const goToUrl = location.pathname + (location.search ? location.search : "" )
+
+                    if(location.pathname === "/" ||location.pathname === "/emaillogin"){
+                      navigate("/stntcnthome")
+                    }else{
+                      navigate(goToUrl)
+                    }
+                    
                 }
-                
         }catch(e){
             console.log(e,"This is from cath block")
         }finally{
           setIsLoading(false)
+          // isLoggedIn(true)
+          console.log(isLoggedIn)
         }
   
     }

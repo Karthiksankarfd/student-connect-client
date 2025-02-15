@@ -30,7 +30,7 @@ const PersonalInformation = () => {
                         </div>
                         <div className='lg:col-span-6 col-span-12'>
                             <input type="file" id='cover' className="border-2 border-gray-400 rounded-lg px-4 py-1 text-black focus:outline-none hidden"  onChange={(e)=>setSignUpUser( (prevUser)=>({...prevUser, coverPhoto:e.target.files[0]}))}/>
-                            <label className=" text-white text-center  rounded-lg text-sm font-medium bg-blue-600 p-2 block " htmlFor="cover">Upload cover photo</label> <br />
+                            {signUpUser.coverPhoto ? ( <><label className=" text-white text-center rounded-lg text-sm font-medium bg-blue-600 p-2 block" htmlFor="profile">Change Cover Photo</label> <br /></>) : (<><label className=" text-white text-center rounded-lg text-sm font-medium bg-blue-600 p-2 block" htmlFor="profile">Upload cover photo</label> <br /></>) }
                         </div>
                          <p className='col-span-full text-xs font-semibold text-blue-500 w-full block'>The name you fill in the *Name field will be shown as your user name </p>
                         

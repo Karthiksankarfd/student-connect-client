@@ -8,11 +8,11 @@ const ProtectedComponent = ({ children }) => {
   const { isLoggedIn } = useContext(UserLoggedInStateContext)
 
   useEffect(() => {
-    if (!isLoggedIn) {
+    if (isLoggedIn === false) {
       console.log("Redirecting to /login");
       navigate("/emaillogin");
     }
-  }, [isLoggedIn, navigate]);
+  }, [isLoggedIn]);
 
   if (!isLoggedIn) return null;
 

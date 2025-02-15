@@ -45,16 +45,14 @@ const navigate = useNavigate()
                             <button key={index} onClick={(e)=>{e.preventDefault();setSignUpUser((prevUser)=>({...prevUser, areasInterestedIn:[...prevUser.areasInterestedIn, feilds]})) }}  className="border-[#0057FF] border-2 text-black  py-2 px-5 rounded-full text-xs hover:bg-[#0057FF] hover:text-white transition-all delay-50">{feilds}</button>
                         )
                     })}
-  
-
             </div>
             <hr className="mt-5 "/>
                      <div className="flex flex-wrap justify-between mt-5 ">
                         <button className="border-[#0057FF] border-2 text-black  py-2 px-5 rounded-full text-xs hover:bg-[#0057FF] hover:text-white transition-all delay-50">previous</button>
                      {/* <button className="border-[#0057FF] border-2 text-black  py-2 px-5 rounded-full text-xs hover:bg-[#0057FF] hover:text-white transition-all delay-50">next</button> */}
                         <div>
-                            <button className="border-[#0057FF] border-2 text-black  py-2 px-5 rounded-full text-xs hover:bg-[#0057FF] hover:text-white transition-all delay-50 mr-5">skip</button>
-                            <button onClick={()=>{navigate("/profileUpload"); console.log(signUpUser)}} className="border-[#0057FF] border-2 text-black  py-2 px-5 rounded-full text-xs hover:bg-[#0057FF] hover:text-white transition-all delay-50">continue</button>
+                            <button onClick={()=>{navigate("/profileUpload")}} className="border-[#0057FF] border-2 text-black  py-2 px-5 rounded-full text-xs hover:bg-[#0057FF] hover:text-white transition-all delay-50 mr-5">skip</button>
+                            <button onClick={()=>{navigate("/profileUpload")}} className="border-[#0057FF] border-2 text-black  py-2 px-5 rounded-full text-xs hover:bg-[#0057FF] hover:text-white transition-all delay-50">continue</button>
                         </div>
                     </div>
 

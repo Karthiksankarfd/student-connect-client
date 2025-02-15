@@ -70,10 +70,11 @@ const useLogin = () => {
       setIsLoading(false)
       // Check if the error has a response object (indicating a server response)
       if (e.response && e.response.status === 401) {
-        console.log("Server message:", e.response.data.msg);
-        setError(e.response.data.msg);
+        console.log("Server message:", e.response);
+        setError(e.response?.data?.msg);
       } else {
-        setError(e.response.data.msg);
+        console.log("Server message:", e.response);
+        setError(e.response?.data?.msg);
         console.error("Unexpected error:", e);
       }
     }

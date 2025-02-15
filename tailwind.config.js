@@ -20,7 +20,7 @@ module.exports = {
         },
       },
       animation: {
-        scrollY: 'scrollY 30s  infinite',
+        scrollY: 'scrollY 30s linear infinite',
         scrollX: 'scrollX 1.5s ease-in-out infinite',
       },
     

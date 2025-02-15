@@ -37,6 +37,8 @@ const Profile = () => {
                   {loggedInuser?.portfolioUrl}
                 </Link>
               )}
+
+              {/*  */}
               <div className="flex my-2">
                 <Link className="text-xs text-blue-500 mr-3">
                   Followers {loggedInuser?.followers?.length || 0}
@@ -45,7 +47,7 @@ const Profile = () => {
                   Following {loggedInuser?.following?.length || 0}
                 </Link>
               </div>
-
+{/* 
               <div className="flex gap-x-5">
                 <Link className="border-2 border-blue-500 rounded-full py-1 px-2 text-xs">
                   Follow
@@ -53,7 +55,7 @@ const Profile = () => {
                 <Link className="border-2 border-blue-500 rounded-full py-1 px-2 text-xs">
                   Message
                 </Link>
-              </div>
+              </div> */}
             </div>
           </div>
 
@@ -168,3 +170,98 @@ const Profile = () => {
 };
 
 export default Profile;
+
+
+
+// import React, { useContext } from 'react';
+// import { UserLoggedInStateContext } from '../context/UserLoggedInContext';
+// import { Link } from 'react-router-dom';
+// import { FaEdit } from 'react-icons/fa';
+// import EditProfileModal from '../components/Modal/EditProfileModal';
+// import { ModalContext } from '../context/ModalContext';
+
+// const Profile = () => {
+//   const { loggedInuser, isLoggedIn } = useContext(UserLoggedInStateContext);
+//   const { openEditProfileModal, closeEditProfileModal, isEditProfileModalOpen } = useContext(ModalContext);
+
+//   return (
+//     <>
+//       {isLoggedIn ? (
+//         <section className="profilesection p-6 grid grid-cols-1 md:grid-cols-3 gap-6">
+//           {/* Left Column - Profile Info */}
+//           <div className="bg-white dark:bg-gray-900 p-5 rounded-lg shadow-lg text-center">
+//             <div className="relative inline-block">
+//               <img
+//                 src={loggedInuser?.profilePhotoUrl || 'https://via.placeholder.com/150'}
+//                 className="rounded-full w-24 h-24 object-cover border-4 border-blue-500"
+//                 alt="profile"
+//               />
+//               <button 
+//                 className="absolute top-0 right-0 bg-gray-800 text-white p-1 rounded-full"
+//                 onClick={openEditProfileModal}
+//               >
+//                 <FaEdit />
+//               </button>
+//             </div>
+//             <h2 className="text-xl font-semibold mt-3">{loggedInuser?.name || 'User Name'}</h2>
+//             <p className="text-sm text-gray-500">{loggedInuser?.email || 'No email provided'}</p>
+//             {loggedInuser?.portfolioUrl && (
+//               <Link target="_blank" className="text-xs text-blue-500 hover:underline">
+//                 {loggedInuser?.portfolioUrl}
+//               </Link>
+//             )}
+//             <div className="flex justify-center gap-4 mt-3">
+//               <Link className="text-sm text-blue-500">Followers {loggedInuser?.followers?.length || 0}</Link>
+//               <Link className="text-sm text-blue-500">Following {loggedInuser?.following?.length || 0}</Link>
+//             </div>
+//             <div className="mt-4 flex gap-3 justify-center">
+//               <button className="border border-blue-500 text-blue-500 rounded-full px-3 py-1 text-xs">Follow</button>
+//               <button className="border border-blue-500 text-blue-500 rounded-full px-3 py-1 text-xs">Message</button>
+//             </div>
+//           </div>
+
+//           {/* Middle Column - Bio and About */}
+//           <div className="bg-white dark:bg-gray-900 p-5 rounded-lg shadow-lg col-span-2">
+//             <div className="mb-4">
+//               <h3 className="font-semibold text-lg flex justify-between">
+//                 About <FaEdit className="cursor-pointer" onClick={openEditProfileModal} />
+//               </h3>
+//               <p className="text-sm">{loggedInuser?.about || 'No about info provided'}</p>
+//             </div>
+//             <div>
+//               <h3 className="font-semibold text-lg">Bio</h3>
+//               <p className="text-sm">{loggedInuser?.bio || 'No bio info provided'}</p>
+//             </div>
+//           </div>
+
+//           {/* Bottom Section - Skills, Tools, Interests */}
+//           <div className="md:col-span-3 grid grid-cols-1 md:grid-cols-3 gap-6">
+//             {['Skills', 'Tools', 'Interested In'].map((section, idx) => (
+//               <div key={idx} className="bg-white dark:bg-gray-900 p-5 rounded-lg shadow-lg">
+//                 <h3 className="font-semibold text-lg">{section}</h3>
+//                 <ul className="flex flex-wrap gap-2 mt-2">
+//                   {(loggedInuser?.[section.toLowerCase().replace(' ', '')] || []).length > 0 ? (
+//                     loggedInuser[section.toLowerCase().replace(' ', '')].map((item, index) => (
+//                       <li key={index} className="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded-full">
+//                         {item}
+//                       </li>
+//                     ))
+//                   ) : (
+//                     <p className="text-xs text-gray-500">No {section.toLowerCase()} info provided</p>
+//                   )}
+//                 </ul>
+//               </div>
+//             ))}
+//           </div>
+//         </section>
+//       ) : (
+//         <p className="text-center text-xl">Please log in to view the profile.</p>
+//       )}
+
+//       {isEditProfileModalOpen && <EditProfileModal user={loggedInuser} onClose={closeEditProfileModal} />}
+//     </>
+//   );
+// };
+
+// export default Profile;
+

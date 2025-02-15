@@ -36,6 +36,7 @@ const UseReducer = () => {
 };
 
 const Todo = () => {
+  
   const [todos, setTodos] = useState("");
 
   const reducerFn = (todoArray, action) => {

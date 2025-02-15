@@ -7,24 +7,19 @@ import { searchResultContext } from '../context/searchContext'
 const useSearch = () => {
     const {setSearchResult} = useContext(searchResultContext);
     const navigate = useNavigate()
-    const fetchSearchResults = async (searchTerm) =>{
+
+    const navigateToResults = async (searchTerm) =>{
          console.log("fetchSearchResults called .. hitting api...", searchTerm)
-         if(searchTerm === " "){
+         if(searchTerm === null){
             console.log("no querry present ... ")
             return ;
          }
-         try{
-            // const res =  await API.get(`/search?query=${searchTerm}`)
-            const res = await API.get('/search', { params: { query: searchTerm } });
-            if(res.status === 200){
-                setSearchResult(res.data)
-                navigate("searchresultpage")
-            }
-         }catch(e){
-            console.log(e, "Error fetching the query")
-         }
+         // /stntcnthome/searchresultpage/search?keyword=${query}
+         navigate(`searchresultpage/search?keyword=${searchTerm}`)
     }
-  return {fetchSearchResults}
+
+
+  return {navigateToResults,}
 }
 
 export default useSearch

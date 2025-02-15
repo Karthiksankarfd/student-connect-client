@@ -8,16 +8,18 @@ import {
 import { Link, NavLink } from "react-router-dom";
 import { ModalContext } from "../context/ModalContext";
 import { UserLoggedInStateContext } from "../context/UserLoggedInContext";
-import { useSearchParams } from "react-router-dom";
+// import { useSearchParams } from "react-router-dom";
 import useSearch from "../hooks/useSearch";
+import { searchResultContext } from "../context/searchContext";
 
 const NavbarFinal = () => {
   const { loggedInuser, isLoggedIn } = useContext(UserLoggedInStateContext);
   const [isDarkMode, setIsDarkMode] = useState(false);
   const { setIsUploadModal, setIsModalActive } = useContext(ModalContext);
   const [isNavbarActive, setisNavbarActive] = useState(false);
-  const [querySearchParams, setQuerySearchParams] = useSearchParams({ q: "" });
-  const { fetchSearchResults } = useSearch();
+
+  const {querySearchParams, setQuerySearchParams} = useContext(searchResultContext)
+  const { navigateToResults } = useSearch();
 
   const handleToggle = () => {
     setIsDarkMode(!isDarkMode);
@@ -173,7 +175,7 @@ const NavbarFinal = () => {
       )}
       <div className="search-bar lg:w-1/5">
         <div className=" h-fit  block relative ">
-          <form action="" className="flex items-center">
+          <form  className="flex items-center">
             <input
             value={querySearchParams.get("q")}
               id="search"
@@ -186,9 +188,12 @@ const NavbarFinal = () => {
             />
             {/* <label htmlFor="search" className="py-1 px-3 ml-3 bg-blue-500 text-white">search</label> */}
           </form>
-          <label htmlFor="search" onClick={()=>{fetchSearchResults(querySearchParams.get("q"))}}>
+          {/* <button type="submit"> */}
+          <label htmlFor="search"  onClick={()=>{navigateToResults(querySearchParams.get("q"))}}>
             <FaSearch className=" text-gray-400 absolute top-1/2 left-[95%] -translate-x-1/2 -translate-y-1/2 " />
           </label>
+          {/* </button> */}
+
         </div>
       </div>
 
@@ -292,7 +297,7 @@ const NavbarFinal = () => {
           </div>
           {/* visible only when user loggedin is true */}
           {isLoggedIn ? (
-            <>
+            <div className="group">
               <Link to="/stntcnthome/profile" className="">
                 <img
                   src={
@@ -304,15 +309,17 @@ const NavbarFinal = () => {
                 />
               </Link>
 
-              <div className="absolute hidden top-6 z-50 right-6 w-[100px] border-2 border-black   transition-all delay-100  bg-white dark:bg-black text-sm font-semibold cursor-pointer  py-2 px-2 shadow-xl rounded-xl">
+
+
+              <div className="absolute hidden group-hover:block  top-6 z-50 right-6 w-[100px] border-2    transition-all delay-100  bg-white dark:bg-black text-sm font-semibold cursor-pointer  py-2 px-2 shadow-xl ">
                 <ul className="list-none ">
                   <li
                     onClick={() => {
-                      setIsUploadModal(true);
-                      setIsModalActive(true);
+                      localStorage.removeItem("authtoken");
+                      window.location.href = "http://localhost:3000/emaillogin"
                     }}
                   >
-                    <Link>Upload post</Link>
+                    <Link>Log out</Link>
                   </li>
                 </ul>
               </div>
@@ -320,7 +327,7 @@ const NavbarFinal = () => {
                   title="upload post"
                   className="absolute  rounded-full text-black top-4 right-5  cursor-pointer bg-white"
                 /> */}
-            </>
+            </div>
           ) : (
             <Link to="/emaillogin" className="p-2 bg-blue-600 text-white ">
               Login

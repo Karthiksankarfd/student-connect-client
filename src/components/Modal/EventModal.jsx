@@ -1,12 +1,13 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { ModalContext } from '../../context/ModalContext';
+// import { X } from 'lucide-react';
 
 function EventModal() {
   const { closeEventModal } = useContext(ModalContext);
-
-  const [formData, setFormData] = useState({
+  const [eventBannerPreview, setEventBannerPreview] = useState(null);  // ✅ Store preview URL
+  const [eventFormData, setEventFormData] = useState({
     name: '',
-    image: '',
+    image: [],
     description: '',
     venue: '',
     time: '',
@@ -24,216 +25,104 @@ function EventModal() {
 
   // Handle Input Change
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    const { name, value, files } = e.target;
+    setEventFormData((prev) => ({
+      ...prev, // Spread the existing state
+      [name]: name === "image" ? files[0] : value, // Correctly handle file inputs
+    }));
+    
   };
 
+
+  useEffect(() => {
+    // eventFormData.image instanceof File this will give us the file is from the form....
+    if (!eventFormData.image || !(eventFormData.image instanceof File)) {
+      setEventBannerPreview(null);
+      return;
+    }
+  
+    const objectUrl = URL.createObjectURL(eventFormData.image);
+    setEventBannerPreview(objectUrl);
+  
+    return () => URL.revokeObjectURL(objectUrl); // Cleanup memory leak
+  }, [eventFormData.image]);
+
   return (
-    <div className="fixed z-[2] inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-      <div className="bg-white p-8 rounded-lg shadow-lg w-1/2 h-4/5 overflow-y-scroll">
-      <div className='flex justify-end'>
-            <button
-                onClick={closeEventModal}
-                type="button"
-                className=" rounded-full "
-                >
-                x
-                </button>
-        </div>
-        <h2 className="text-xl font-bold mb-4">Create New Event</h2>
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+      <div className="bg-white text-black dark:bg-black dark:text-white backdrop-blur-lg bg-opacity-90 p-6 rounded-2xl shadow-xl w-[90%] md:w-2/3 lg:w-1/2 max-h-[80vh] overflow-y-auto relative border border-gray-300">
+        
+        {/* Close Button */}
+        <button onClick={closeEventModal} className="absolute top-4 right-4 p-2 rounded-full bg-gray-200 hover:bg-gray-300 transition-all">
+          {/* <X size={20} /> */}
+          x
+        </button>
 
-        <form>
-          {/* Event Name */}
-          <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700">Event Name</label>
-            <input
-              type="text"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              className="mt-1 p-2 w-full border rounded-lg"
-              placeholder="Enter event name"
-              required
-            />
-          </div>
+        <h2 className="text-2xl font-semibold text-gray-800 mb-6 text-center">Create New Event</h2>
 
-          {/* Image URL */}
+        <form onSubmit={(e)=>e.preventDefault()}>
+          {/* File Upload */}
           <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700">Image URL</label>
+            <label htmlFor="imageupload" className="bg-blue-500 w-fit px-5 py-2 text-white block text-sm font-medium">
+              Upload Event Image
+            </label>
             <input
-              type="text"
+              id="imageupload"
+              type="file"
               name="image"
-              value={formData.image}
               onChange={handleChange}
-              className="mt-1 p-2 w-full border rounded-lg"
-              placeholder="Enter image URL"
-              required
+              className="hidden"
+              accept="image/*"  // ✅ Restrict to images only
             />
           </div>
+
+          {/* 🟢 Image Preview */}
+          {eventBannerPreview && (
+            // <div className="mb-4">
+              <img src={eventBannerPreview} alt="Event Preview" className="w-auto my-4 h-40 object-contain rounded-lg shadow-md" />
+            // </div>
+          )}
+
+          {[
+            { label: 'Event Name', name: 'name', type: 'text' },
+            { label: 'Venue', name: 'venue', type: 'text' },
+            { label: 'Time', name: 'time', type: 'text', placeholder: 'e.g., 8:00 AM - 4:00 PM' },
+            { label: 'Conducted By', name: 'conductedBy', type: 'text' },
+            { label: 'Host Image URL', name: 'hostImage', type: 'text' },
+            { label: 'Duration', name: 'duration', type: 'text', placeholder: 'e.g., 2hrs 30min' },
+            { label: 'Category', name: 'category', type: 'text', placeholder: 'e.g., Tech Talks' },
+            { label: 'Entry Fee', name: 'entryFee', type: 'text', placeholder: 'e.g., Free' },
+            { label: 'Prize', name: 'prize', type: 'text' },
+            { label: 'Things Given to Participants', name: 'thingsGivenToParticipants', type: 'text', placeholder: 'e.g., Certificate, T-Shirt' },
+          ].map(({ label, name, type, placeholder }) => (
+            <div key={name} className="mb-4">
+              <label   className={ `   block text-sm font-medium text-gray-700`}  >{label}</label>
+              <input
+               
+                type ={type}
+                // name is image for file input 
+                name={name}
+                value={eventFormData[name]}
+                onChange={handleChange}
+                placeholder={placeholder || `Enter ${label.toLowerCase()}`}
+                className={`mt-2 ${type === "file" ? "hidden" : "block"} p-3 w-full border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:outline-none bg-transparent`}
+                required
+              />
+            </div>
+          ))}
+          
 
           {/* Description */}
           <div className="mb-4">
             <label className="block text-sm font-medium text-gray-700">Description</label>
             <textarea
               name="description"
-              value={formData.description}
+              value={eventFormData.description}
               onChange={handleChange}
-              className="mt-1 p-2 w-full border rounded-lg"
+              className="mt-2 p-3 w-full border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:outline-none bg-transparent"
               placeholder="Enter event description"
+              rows={3}
               required
             ></textarea>
-          </div>
-
-          {/* Venue */}
-          <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700">Venue</label>
-            <input
-              type="text"
-              name="venue"
-              value={formData.venue}
-              onChange={handleChange}
-              className="mt-1 p-2 w-full border rounded-lg"
-              placeholder="Enter venue"
-              required
-            />
-          </div>
-
-          {/* Time */}
-          <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700">Time</label>
-            <input
-              type="text"
-              name="time"
-              value={formData.time}
-              onChange={handleChange}
-              className="mt-1 p-2 w-full border rounded-lg"
-              placeholder="Enter time (e.g., 8:00 AM - 4:00 PM)"
-              required
-            />
-          </div>
-
-          {/* Conducted By */}
-          <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700">Conducted By</label>
-            <input
-              type="text"
-              name="conductedBy"
-              value={formData.conductedBy}
-              onChange={handleChange}
-              className="mt-1 p-2 w-full border rounded-lg"
-              placeholder="Enter organizer name"
-              required
-            />
-          </div>
-
-          {/* Host Image URL */}
-          <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700">Host Image URL</label>
-            <input
-              type="text"
-              name="hostImage"
-              value={formData.hostImage}
-              onChange={handleChange}
-              className="mt-1 p-2 w-full border rounded-lg"
-              placeholder="Enter host image URL"
-              required
-            />
-          </div>
-
-          {/* Duration */}
-          <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700">Duration</label>
-            <input
-              type="text"
-              name="duration"
-              value={formData.duration}
-              onChange={handleChange}
-              className="mt-1 p-2 w-full border rounded-lg"
-              placeholder="Enter duration (e.g., 2hrs 30min)"
-              required
-            />
-          </div>
-
-          {/* Category */}
-          <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700">Category</label>
-            <input
-              type="text"
-              name="category"
-              value={formData.category}
-              onChange={handleChange}
-              className="mt-1 p-2 w-full border rounded-lg"
-              placeholder="Enter category (e.g., Tech Talks)"
-              required
-            />
-          </div>
-
-          {/* Entry Fee */}
-          <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700">Entry Fee</label>
-            <input
-              type="text"
-              name="entryFee"
-              value={formData.entryFee}
-              onChange={handleChange}
-              className="mt-1 p-2 w-full border rounded-lg"
-              placeholder="Enter entry fee (e.g., Free)"
-              required
-            />
-          </div>
-
-          {/* Last Date to Register */}
-          <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700">Last Date to Register</label>
-            <input
-              type="date"
-              name="lastDateToRegister"
-              value={formData.lastDateToRegister}
-              onChange={handleChange}
-              className="mt-1 p-2 w-full border rounded-lg"
-              required
-            />
-          </div>
-
-          {/* Event Date */}
-          <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700">Event Date</label>
-            <input
-              type="date"
-              name="eventDate"
-              value={formData.eventDate}
-              onChange={handleChange}
-              className="mt-1 p-2 w-full border rounded-lg"
-              required
-            />
-          </div>
-
-          {/* Prize */}
-          <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700">Prize</label>
-            <input
-              type="text"
-              name="prize"
-              value={formData.prize}
-              onChange={handleChange}
-              className="mt-1 p-2 w-full border rounded-lg"
-              placeholder="Enter prize details"
-              required
-            />
-          </div>
-
-          {/* Things Given to Participants */}
-          <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700">Things Given to Participants</label>
-            <input
-              type="text"
-              name="thingsGivenToParticipants"
-              value={formData.thingsGivenToParticipants}
-              onChange={handleChange}
-              className="mt-1 p-2 w-full border rounded-lg"
-              placeholder="Enter items separated by commas"
-              required
-            />
           </div>
 
           {/* About */}
@@ -241,22 +130,44 @@ function EventModal() {
             <label className="block text-sm font-medium text-gray-700">About</label>
             <textarea
               name="about"
-              value={formData.about}
+              value={eventFormData.about}
               onChange={handleChange}
-              className="mt-1 p-2 w-full border rounded-lg"
+              className="mt-2 p-3 w-full border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:outline-none bg-transparent"
               placeholder="Enter additional event details"
+              rows={3}
               required
             ></textarea>
           </div>
+          {/* Dates */}
+          <div className="flex gap-4 mb-4">
+            <div className="w-1/2">
+              <label className="block text-sm font-medium text-gray-700">Last Date to Register</label>
+              <input
+                type="date"
+                name="lastDateToRegister"
+                value={eventFormData.lastDateToRegister}
+                onChange={handleChange}
+                className="mt-2 p-3 w-full border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:outline-none bg-transparent"
+                required
+              />
+            </div>
+            <div className="w-1/2">
+              <label className="block text-sm font-medium text-gray-700">Event Date</label>
+              <input
+                type="date"
+                name="eventDate"
+                value={eventFormData.eventDate}
+                onChange={handleChange}
+                className="mt-2 p-3 w-full border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:outline-none bg-transparent"
+                required
+              />
+            </div>
+          </div>
 
-          {/* Buttons */}
-          <div className="flex justify-end">
-  
-            <button
-              type="submit"
-              className="bg-purple-600 text-white px-4 py-2 rounded-lg"
-            >
-              Submit
+          {/* Submit Button */}
+          <div className="flex justify-center mt-6">
+            <button type="submit" className="bg-gradient-to-r from-purple-500 to-indigo-600 text-white px-6 py-3 rounded-lg shadow-lg hover:opacity-90 transition-all">
+              Submit Event
             </button>
           </div>
         </form>

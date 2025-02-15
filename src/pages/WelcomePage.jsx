@@ -4,22 +4,22 @@ import {Link, useNavigate} from  "react-router-dom"
 import { GoogleLogin } from '@react-oauth/google';
 import { UserLoggedInStateContext } from '../context/UserLoggedInContext';
 import LaunchLoader from '../components/Loaders/LaunchLoader';
+import FireBaseLoginBtn from '../components/GoogleOauth/FireBaseLoginBtn';
 const WelcomePage = () => {
+    
+        const navigate = useNavigate()
+        const{verifyToken} = useContext(UserLoggedInStateContext)
+        const [isLaunchLoader,setisLaunchLoader] = useState(true)
 
-const{verifyToken} = useContext(UserLoggedInStateContext)
-const navigate = useNavigate()
-const [isLaunchLoader,setisLaunchLoader] = useState(true)
-useEffect(  ()=>{
-     setTimeout(() => {
-        verifyToken()
-        setisLaunchLoader(false)
-    }, 2000);
-   
-    return ()=>setisLaunchLoader(false)
-},[])
-
-
-
+        useEffect(() => {
+            const timeout = setTimeout(() => {
+              verifyToken();
+              setisLaunchLoader(false);
+            }, 2000);
+          
+            return () => clearTimeout(timeout); // Cleanup function
+          }, []);
+          
 
   return (
     <>  
@@ -33,15 +33,17 @@ useEffect(  ()=>{
                     <p className='text-start text-sm w-full  mb-3'>
                         Connect, collaborate, and grow with like-minded individuals. Explore new ideas, share experiences, and unlock opportunities in your field.
                     </p>
-                    <div className='btn-container flex justify-start items-center gap-5 mb-3 h-fit flex-wrap'>
+                    <div className='btn-container flex items-center  gap-5 mb-3 h-fit flex-wrap'>
                         <div className='flex-grow'>
-                            <GoogleLogin/>
+                            <FireBaseLoginBtn/>
                         </div>
                         <div className='h-10 hidden lg:block w-[1px] bg-gray-400 items-stretch'></div>
                         <div className='flex-grow'>
                             <Button name="Login with email" fn = {()=>navigate("/emaillogin")} />  
                         </div>               
                     </div>
+
+
                     <div className='flex items-center w-full '>
                         <hr className='flex-grow border-gray-300' />
                         <p className='mx-2'>or</p>

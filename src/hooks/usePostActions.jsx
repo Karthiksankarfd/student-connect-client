@@ -5,7 +5,7 @@ import { UserLoggedInStateContext } from "../context/UserLoggedInContext";
 // import { PostContext } from "../context/PostContext.jsx";
 
 const usePostActions = () => {
-  const { setPosts,  setComments, setShowComment } =
+  const { setPosts,  setComments, setShowComment,showComment } =
     useContext(PostContext);
   const { isLoggedIn } = useContext(UserLoggedInStateContext);
 
@@ -77,7 +77,7 @@ const usePostActions = () => {
   const getcommentsFn = async (postId) => {
     // ! this function setShowComment is working based on obj and bracket notation and negotiating it
     // ! this ShowComment is basically an object
-    if (!setShowComment[postId]) {
+    if (!showComment[postId]) {
       try {
         console.log(postId);
         const getComments = await API.get(`/getcomments/${postId}`);
@@ -91,7 +91,6 @@ const usePostActions = () => {
         console.log(e);
       }
     }
-
     setShowComment((prev) => ({ ...prev, [postId]: !prev[postId] }));
   };
 

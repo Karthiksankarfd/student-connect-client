@@ -1,4 +1,5 @@
-const  scholarships =[
+const  scholarships =
+[
     {
       "id": 1,
       "name": "Global Excellence Scholarship",

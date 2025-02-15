@@ -31,24 +31,23 @@ const useSignup = () => {
     signUpUser.areasInterestedIn.forEach((area,index)=> formData.append(`areasInterestedIn[${index}]`, area) )
     const isMailExist = async (e) => {
         e.preventDefault();
-
         if(signUpUser.email===""){
             setSignUpError("Please provide an email address.");
             return;
         }
-
         // Validation: Check email format
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(signUpUser.email)) {
             setSignUpError("Invalid email format. Please enter a valid email.");
             return;
         }
-
         try {
+            setSignUpError("");
             setIsLoading(true)
             const verifySignUPemail = await API.post("/auth/isMailExist", {}, {
-                headers: { "email": signUpUser.email }
+                headers: { "Email": signUpUser.email , "Content-Type": "application/json"}
             });
+            
             if (verifySignUPemail.status === 201) {
                 setSignUpUser((prev)=>({...prev, email:verifySignUPemail.data.useremail}))
                 console.log(verifySignUPemail.data);
@@ -100,7 +99,7 @@ const useSignup = () => {
 
         if(createUser.status === 201){
             console.log("user created successfully ...")
-            setLoggedInuser(createUser.data.user)
+            // setLoggedInuser(createUser.data.user)
             navigate("/emaillogin")
         }
     }catch(e){

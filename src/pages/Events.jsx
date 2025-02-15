@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination } from 'swiper/modules';
 
@@ -11,7 +11,12 @@ import events from '../MockDatas/events';
 import ShortEventInfoCard2 from '../components/ShortEventInfoCard2';
 import { ModalContext } from '../context/ModalContext';
 
+
+
 const Events = () => {
+ 
+  useEffect(()=>{},[])
+
   const {openEventModal} = useContext(ModalContext)
   return (
     <div>
@@ -24,7 +29,6 @@ const Events = () => {
 
                       <div className='group relative'>
                            <button className="border-[#0057FF] border-2 text-black  py-1 px-5 rounded-full text-xs hover:bg-[#0057FF] hover:text-white   dark:text-white transition-all delay-50">Category</button>
-
                            <ul className={` clip-path-polygon dark:bg-black/90  dark:text-white bg-white text-black list-none absolute z-50 left-0 mt-2   shadow-lg opacity-0 invisible transition-all duration-300 delay-100 group-hover:opacity-100 group-hover:visible`}>
                                 <li className="px-4 py-2 hover:bg-gray-100 whitespace-nowrap  text-sm">
                                   competitions
@@ -39,7 +43,6 @@ const Events = () => {
                                    MeetUp
                                 </li>
                             </ul>
-
                       </div>
 
                     <button className="border-[#0057FF] border-2 text-black  py-1 px-5 rounded-full text-xs hover:bg-[#0057FF] hover:text-white   dark:text-white transition-all delay-50">Date</button>
@@ -74,9 +77,7 @@ const Events = () => {
           {events.map((event,index)=>{
               return <Link to="detail"><ShortEventInfoCard2  key={index} {...event}/></Link>
           })}
-                    {/* {events.map((event,index)=>{
-              return <ShortEventInfoCard2  key={index} eventImgae={event.image}  eventName={event.name} eventDescription={event.description} venue={event.venue} time={event.time}/>
-          })} */}
+
       </div>
  
      

@@ -110,6 +110,7 @@ const PostCard = ({
 
 
       <div className="flex gap-x-2 w-full max-w-full overflow-x-auto justify-center">
+        {/* how to learn */}
         {imageUrl.map((file, index) => <LazyLoadMedia key={index} src={file}/>
         )}
       </div>
@@ -132,8 +133,10 @@ const PostCard = ({
               {likes}
             </span>
             <span>
-              {" "}
-              <FaRegComment className="dark:text-white cursor-pointer hover:text-blue-500" />
+              <div  onClick={() => {getcommentsFn(_id)}} >
+                  {showComment[_id] ?   <FaRegComment/>  :  <FaRegComment   className="dark:text-white cursor-pointer hover:text-blue-500" />}
+              </div>
+             
             </span>
             <FaShare className="dark:text-white cursor-pointer hover:text-green-500" />
           </div>
@@ -166,19 +169,12 @@ const PostCard = ({
         </div>
 
         {/* View Comments */}
-        <div
-          onClick={() => {
-            getcommentsFn(_id);
-          }}
-          className="text-sm text-gray-400 cursor-pointer"
-        >
+        <div onClick={() => {getcommentsFn(_id);}}bclassName="text-sm text-gray-400 cursor-pointer">
           {showComment[_id] ? "Hide comments" : "View comments"}
         </div>
       </div>
 
-      {showComment[_id] && (
-        <CommentComponent comments={comments} postId={_id} />
-      )}
+      {showComment[_id] && (<CommentComponent comments={comments} postId={_id} />)}
     </section>
   );
 };
