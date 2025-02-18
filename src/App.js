@@ -32,6 +32,7 @@ import SearchResultsPage from "./pages/SearchResultsPage"
 import Results from './components/SearchResultsPageComponents/Results';
 
 import UserProfilePage from './components/SearchResultsPageComponents/UserProfilePage';
+import Chat from './components/ChatComponent/Chat';
 function App() {
   function checkNetworkConnection() {
     let rtt = navigator.connection.rtt
@@ -63,7 +64,7 @@ function App() {
                                   {/* <ProtectedComponent></ProtectedComponent> */}
                                   <Route index element={<IndexPage />} />
                                   <Route path="/stntcnthome/profile" element={<Profile />} />
-                                  <Route path="/stntcnthome/community" element={<ProtectedComponent><Community /></ProtectedComponent>} />
+                                  <Route path="/stntcnthome/community" element={<ProtectedComponent><Chat/></ProtectedComponent>} />
                                   <Route path="/stntcnthome/mentorship" element={<MentorshipPage />} />
 
                                   <Route path="/stntcnthome/Opportunities" element={<OppurtunityPage />}>

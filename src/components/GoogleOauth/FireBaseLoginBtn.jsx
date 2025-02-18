@@ -1,5 +1,5 @@
 import React, { use, useContext, useState } from "react";
-import { GoogleLogin } from "@react-oauth/google"; // You can use this or your custom button
+// import { GoogleLogin } from "@react-oauth/google"; // WE can use this or your custom button
 import { auth, provider } from "../../../src/firebaseConfig"; // Importing the auth and provider from firebaseConfig
 import { signInWithPopup } from "firebase/auth";
 import API from "../../../src/services/API";
@@ -28,7 +28,7 @@ const FireBaseLoginBtn = () => {
     try {
       let googleLoginReq = await API.get("/auth/googlelogin", {
         headers: {
-          Authorization: `Bearer ${idToken}`, // 🔥 Send idToken in header
+          // Authorization: `Bearer ${idToken}`,  SendING idToken in header
           "Content-Type": "application/json",
         },
       });
