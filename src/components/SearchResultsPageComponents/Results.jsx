@@ -49,11 +49,11 @@ const Results = () => {
   return (
     <div>
 
-      {searchResult?.searchResult?.people.map((person) => (
+      {searchResult?.searchResult?.people?.map((person) => (
         <PeopleCategoryListCard key={person._id} {...person} />
       ))}
 
-      {searchResult?.searchResult?.mentors.map((mentor) => (
+      {searchResult?.searchResult?.mentors?.map((mentor) => (
         <PeopleCategoryListCard key={mentor._id} {...mentor} />
       ))}
     </div>

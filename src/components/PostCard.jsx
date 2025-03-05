@@ -51,7 +51,7 @@ const PostCard = ({
               />
             </Link>
             <div className="name-and-location flex flex-col">
-              <h4 className="font-bold text-base">{userId.name}</h4>
+              <h4 className="font-bold text-base">{userId?.name}</h4>
               <p className="font-normaltext-sm  text-xs">@bangalore</p>
               <p className="font-normal text-xs ">Posted On {createdAt}.</p>
             </div>

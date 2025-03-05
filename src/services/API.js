@@ -4,9 +4,9 @@ import axios from 'axios';
 const API = axios.create({
   // https://student-connect-server.onrender.com
   // Backend API base URL
-  baseURL: `https://student-connect-server.ofnrender.com/api`, 
-  // baseURL: `http://192.168.222.45:5000/api`,
-  // // Backend API base URL
+  baseURL: `https://student-connect-server.onrender.com/api`, 
+  // baseURL: `http://192.168.1.5:5000/api`,
+  // Backend API base URL
   headers: {
     'Content-Type': 'application/json',
   },
